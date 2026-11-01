@@ -8,13 +8,15 @@ Open [ENGG2112_Data_Engineering.ipynb](ENGG2112_Data_Engineering.ipynb) for the 
 
 Select the Python environment with the project dependencies, edit `PROJECT_ROOT` if needed, and run cells from top to bottom. Use `MODE = 'inspect'` with the existing private handoff. For a fresh reproduction from authorised originals, use `MODE = 'build'` and a new `RUN_NAME`; outputs go into a separate `artifacts/notebook_runs/<RUN_NAME>/` handoff. The Notebook refuses an existing build directory. See its first section for the required files. A GitHub clone alone cannot run the data cells without local data.
 
-The original `.py` modules remain available for command-line use and training integration. PDF/DOCX reports are supplementary exports; the main interactive deliverable is the complete `.ipynb`. Clear all saved outputs before sharing a rerun Notebook.
+The [model-training notebook](ENGG2112_Model_Training.ipynb) is a separate PyTorch and scikit-learn ResNet-18 baseline. It consumes the prepared handoff and existing split, selects on validation macro-F1, and keeps test evaluation locked until the split is reviewed and frozen. It cannot produce results from a GitHub clone without the authorized image data and prepared manifests. PyTorch and TorchVision are separate from the data-engineering requirements; follow the official PyTorch install selector for the chosen machine and kernel.
+
+The [Random Forest notebook](ENGG2112_Random_Forest.ipynb) and [CNN-BiLSTM notebook](ENGG2112_CNN_BiLSTM.ipynb) train those methods separately using the same fixed split and cached pretrained image features. The [model comparison notebook](ENGG2112_Model_Comparison.ipynb) compares their saved validation results with the fine-tuned ResNet-18 baseline, verifies that all runs used the same split-manifest hash, and does not train models itself. Test evaluation remains locked pending review and split freeze.
+
+The original `.py` modules remain available for command-line use and training integration. PDF/DOCX reports are supplementary exports. Clear saved outputs before sharing a rerun Notebook.
 
 Read [A tasks and B handoff](docs/A_TASKS_AND_B_HANDOFF.md) for completed work, remaining responsibilities and acceptance checks. The [English data report](reports/ENGG2112_Data_Analysis_Report.pdf) describes the measured provisional results.
 
-The repository already contained CSV files at its root. The pipeline reads `data/train.csv` and `data/train_images/`; a fresh clone does not contain the required images or derived outputs. Follow the data preparation steps below.
-
-Open this folder in VS Code. Select `.venv/Scripts/python.exe` as the Python interpreter / Notebook kernel. Start with `ENGG2112_Data_Engineering.ipynb`. The earlier `notebooks/01_data_audit.ipynb` remains a shorter audit walkthrough. Both have empty saved outputs. See `B_PRESENTATION_GUIDE.txt` for the handoff demonstration and file locations.
+The pipeline reads `data/train.csv` and `data/train_images/`; a fresh clone does not contain the required images or derived outputs. The root CSV files are separate project files, not substitutes for the authorised APTOS inputs. See `B_PRESENTATION_GUIDE.txt` for the handoff demonstration and file locations.
 
 Create an environment on your computer. On Windows with Python 3.12:
 
@@ -38,7 +40,7 @@ data/
 
 Do not upload the images, labels, derived images, per-image manifests, or Notebook outputs containing source images to a public repository. Each teammate should obtain authorised access directly. `.gitignore` excludes local data, artifacts and image/CSV files. See the official [competition rules](https://www.kaggle.com/competitions/aptos2019-blindness-detection/rules).
 
-Before sharing a Notebook, clear its saved outputs locally:
+Before sharing a rerun Notebook, clear its saved outputs locally:
 
 ```powershell
 .\.venv\Scripts\python.exe -m src.clear_notebook_outputs ENGG2112_Data_Engineering.ipynb
