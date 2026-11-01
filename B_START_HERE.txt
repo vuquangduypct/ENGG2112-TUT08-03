@@ -3,19 +3,20 @@ Prepared 13 October 2026
 Version: aptos5-provisional-v1
 
 COMPLETE NOTEBOOK
-Open ENGG2112_Data_Engineering.ipynb from the GitHub project branch.
+Open jupyter notebooks/ENGG2112_Data_Engineering.ipynb from the GitHub project branch.
 It combines the full data code, recorded analysis and handoff in one English file.
 Set PROJECT_ROOT to the folder containing your private data and select inspect mode.
 To reproduce from original images, select build mode and a new RUN_NAME. This writes
 a separate handoff under artifacts/notebook_runs/<RUN_NAME>/ and preserves existing data.
 The Notebook includes its function definitions and does not require importing src.
-The earlier private ZIP does not contain this newly consolidated Notebook; obtain
-the Notebook from GitHub and place it at the extracted private handoff root.
+Archive contents depend on the package date. Obtain the latest Notebook from
+jupyter notebooks/ in GitHub and set PROJECT_ROOT to the extracted private handoff root.
 
 STATUS
 Ready for pipeline integration and initial train/validation experiments.
 NOT a reviewed/frozen final evaluation dataset. Similar-image review is unfinished.
-No trained model or performance result is included.
+This original private data pack contains no trained models. The current public
+repository separately contains saved model validation results. See docs/PROJECT_STATUS.md.
 
 WHAT IS INCLUDED
 ENGG2112_B_private_data_v1.zip contains 3,600 prepared images, the matching labels

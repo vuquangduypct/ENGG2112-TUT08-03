@@ -2,15 +2,21 @@
 
 Local data-engineering contribution for the APTOS 2019 project. The task uses the original five grades: 0 No DR, 1 Mild, 2 Moderate, 3 Severe, 4 Proliferative DR. This revises the binary target in the submitted proposal; confirm the shared target and evaluation with the team.
 
+## Current status
+
+Three model notebooks contain saved validation runs; final test evaluation is still locked. See [project status](docs/PROJECT_STATUS.md) for evidence, limitations, data-version distinctions and the remaining evaluation steps. Historical model outputs are retained and explicitly labelled; maintenance fixes do not imply retraining.
+
 ## Start here
 
-Open [ENGG2112_Data_Engineering.ipynb](ENGG2112_Data_Engineering.ipynb) for the complete English data-engineering contribution in one Jupyter Notebook. It includes the actual Python implementations, audit and class analysis, grouped splitting, image preprocessing, verified loading, recorded findings, and A-to-B instructions. It does not depend on importing `src`.
+Open [ENGG2112_Data_Engineering.ipynb](jupyter%20notebooks/ENGG2112_Data_Engineering.ipynb) for the complete English data-engineering contribution in one Jupyter Notebook. It includes the actual Python implementations, audit and class analysis, grouped splitting, image preprocessing, verified loading, recorded findings, and A-to-B instructions. It does not depend on importing `src`.
+
+Notebooks locate the project root from the repository or a prepared handoff, even when started in `jupyter notebooks/`. Set an absolute `PROJECT_ROOT` if you keep the Notebook elsewhere; set `DATA_ROOT` in model notebooks to your chosen prepared handoff.
 
 Select the Python environment with the project dependencies, edit `PROJECT_ROOT` if needed, and run cells from top to bottom. Use `MODE = 'inspect'` with the existing private handoff. For a fresh reproduction from authorised originals, use `MODE = 'build'` and a new `RUN_NAME`; outputs go into a separate `artifacts/notebook_runs/<RUN_NAME>/` handoff. The Notebook refuses an existing build directory. See its first section for the required files. A GitHub clone alone cannot run the data cells without local data.
 
-The [model-training notebook](ENGG2112_Model_Training.ipynb) is a separate PyTorch and scikit-learn ResNet-18 baseline. It consumes the prepared handoff and existing split, selects on validation macro-F1, and keeps test evaluation locked until the split is reviewed and frozen. It cannot produce results from a GitHub clone without the authorized image data and prepared manifests. PyTorch and TorchVision are separate from the data-engineering requirements; follow the official PyTorch install selector for the chosen machine and kernel.
+The [model-training notebook](jupyter%20notebooks/ENGG2112_Model_Training.ipynb) is a separate PyTorch and scikit-learn ResNet-18 baseline. It consumes the prepared handoff and existing split, selects on validation macro-F1, and keeps test evaluation locked until the split is reviewed and frozen. It cannot produce results from a GitHub clone without the authorized image data and prepared manifests. PyTorch and TorchVision are separate from the data-engineering requirements; follow the official PyTorch install selector for the chosen machine and kernel.
 
-The [Random Forest notebook](ENGG2112_Random_Forest.ipynb) and [CNN-BiLSTM notebook](ENGG2112_CNN_BiLSTM.ipynb) train those methods separately using the same fixed split and cached pretrained image features. The [model comparison notebook](ENGG2112_Model_Comparison.ipynb) compares their saved validation results with the fine-tuned ResNet-18 baseline, verifies that all runs used the same split-manifest hash, and does not train models itself. Test evaluation remains locked pending review and split freeze.
+The [Random Forest notebook](jupyter%20notebooks/ENGG2112_Random_Forest.ipynb) and [CNN-BiLSTM notebook](jupyter%20notebooks/ENGG2112_CNN_BiLSTM.ipynb) train those methods separately using the same fixed split and cached pretrained image features. Both use `src/model_support.py` to reject caches with changed images, preprocessing, transforms, labels, IDs, or encoder versions; old caches are regenerated using train/validation images only. The [model comparison notebook](jupyter%20notebooks/ENGG2112_Model_Comparison.ipynb) compares their saved validation results with the fine-tuned ResNet-18 baseline, verifies that all runs used the same split-manifest hash, and does not train models itself. Test evaluation remains locked pending review and split freeze.
 
 The original `.py` modules remain available for command-line use and training integration. PDF/DOCX reports are supplementary exports. Clear saved outputs before sharing a rerun Notebook.
 
@@ -43,7 +49,7 @@ Do not upload the images, labels, derived images, per-image manifests, or Notebo
 Before sharing a rerun Notebook, clear its saved outputs locally:
 
 ```powershell
-.\.venv\Scripts\python.exe -m src.clear_notebook_outputs ENGG2112_Data_Engineering.ipynb
+.\.venv\Scripts\python.exe -m src.clear_notebook_outputs "jupyter notebooks/ENGG2112_Data_Engineering.ipynb"
 ```
 
 The repository contains code and aggregate reports. Obtain dataset files separately through authorised access; do not commit private handoff archives.
@@ -87,7 +93,7 @@ it does not complete manual duplicate review. The code-only pack needs data sepa
 - Read the shared `split_manifest.csv` once (currently provisional); use `id_code`, `diagnosis`, `split`, `group_id`. Do not make an independent random split.
 - The processed manifest records image filenames; `preprocessing_config.json` records transformations. PNG values remain integers 0..255. Convert/normalize according to the selected model exactly once.
 - The target is a five-class integer label. A binary 0/1 classifier does not implement the revised target.
-- Model architecture, normalization, input resolution, loss and metrics still require team agreement. No model has been trained here.
+- Model notebooks record the implemented methods and input settings: 224x224 RGB with ImageNet normalization. Saved validation results exist for fine-tuned ResNet-18, Random Forest on frozen CNN features, and CNN-BiLSTM. Final test evaluation remains pending review and split freeze.
 - Keep test data out of tuning. Absence of exact duplicate overlap does not establish patient-level independence.
 
 ## Report and human review

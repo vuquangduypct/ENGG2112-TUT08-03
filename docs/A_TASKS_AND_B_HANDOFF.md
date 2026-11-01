@@ -1,12 +1,12 @@
 # Role A tasks and handoff to Role B
 
-Updated 14 October 2026. Dataset version: `aptos5-provisional-v1`.
+Updated 1 November 2026. Original private dataset version: `aptos5-provisional-v1`.
 
-**Main interactive deliverable:** [ENGG2112_Data_Engineering.ipynb](../ENGG2112_Data_Engineering.ipynb) combines the actual code, recorded findings and handoff instructions. Use inspect mode with the existing private handoff, or build mode with authorised originals and a new run name. Existing scripts and report exports remain available.
+**Main interactive deliverable:** [ENGG2112_Data_Engineering.ipynb](../jupyter%20notebooks/ENGG2112_Data_Engineering.ipynb) combines the actual code, recorded findings and handoff instructions. Use inspect mode with the existing private handoff, or build mode with authorised originals and a new run name. Existing scripts and report exports remain available.
 
 **Current status:** the data interface is ready for integration and initial
 training/validation experiments. Duplicate review is incomplete, so this is not
-a frozen dataset for final evaluation. No model performance is claimed.
+a frozen dataset for final evaluation. Model notebooks now contain saved validation results; this does not establish final test performance. See [current status](PROJECT_STATUS.md).
 
 ## Role A responsibilities
 
@@ -27,7 +27,7 @@ Role C leads evaluation discussion and final report assembly, working with A and
 | English report and instructions | Prepared | `reports/`, `README.md`, `B_START_HERE.txt` |
 | Background and primary literature | Outstanding | `docs/data_engineering_notes.md` |
 | Full AI-use appendix | Outstanding | `docs/AI_ASSISTANCE.md` describes what to retain |
-| B-side acceptance on B's computer | Outstanding | Acceptance checklist below |
+| B-side execution | Saved model runs demonstrate data loading and training; formal checksum acceptance still needs recording | Model Notebook outputs; acceptance checklist below |
 
 ## What is in GitHub and what is shared separately
 

@@ -4,7 +4,7 @@ Project root: the folder containing README.md and src/
 All paths below are relative to that project root.
 
 MAIN NOTEBOOK
-Open ENGG2112_Data_Engineering.ipynb and select the project Python kernel.
+Open jupyter notebooks/ENGG2112_Data_Engineering.ipynb and select the project Python kernel.
 Use inspect mode with the existing private handoff. Section 4 shows class counts,
 section 5 checks splits, section 6 describes preprocessing, section 7 verifies and
 loads images, and sections 8-9 contain the recorded report and acceptance checklist.
@@ -16,7 +16,7 @@ the original grade: 0 No DR, 1 Mild, 2 Moderate, 3 Severe, 4 Proliferative DR.
 
 2. CLASS DISTRIBUTION
 Open: artifacts/audit/class_distribution.png
-Or: ENGG2112_Data_Engineering.ipynb (Section 4)
+Or: jupyter notebooks/ENGG2112_Data_Engineering.ipynb (Section 4)
 Explain: The 3,662 original records are imbalanced. Counts are 1,805, 370, 999,
 193 and 295 for grades 0 to 4. Overall accuracy alone can hide weak minority-class results.
 
@@ -45,8 +45,8 @@ and an integer label from 0 to 4.
 
 WHAT TO TELL B
 The package is ready for pipeline integration and initial train/validation work.
-Normalization has not been applied. Please confirm the model, required input
-resolution and normalization. The split is provisional until duplicate review
+Normalization has not been applied. The model notebooks now specify 224x224 RGB and ImageNet normalization.
+Record the exact data version used for each run. The split is provisional until duplicate review
 is complete; keep test data out of tuning and do not report final test results yet.
 
 REPORTS AND PRIVATE ARCHIVES
