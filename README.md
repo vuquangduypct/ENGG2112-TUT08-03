@@ -10,6 +10,8 @@ Select the Python environment with the project dependencies, edit `PROJECT_ROOT`
 
 The [model-training notebook](ENGG2112_Model_Training.ipynb) is a separate PyTorch and scikit-learn ResNet-18 baseline. It consumes the prepared handoff and existing split, selects on validation macro-F1, and keeps test evaluation locked until the split is reviewed and frozen. It cannot produce results from a GitHub clone without the authorized image data and prepared manifests. PyTorch and TorchVision are separate from the data-engineering requirements; follow the official PyTorch install selector for the chosen machine and kernel.
 
+The [Random Forest notebook](ENGG2112_Random_Forest.ipynb) and [CNN-BiLSTM notebook](ENGG2112_CNN_BiLSTM.ipynb) train those methods separately using the same fixed split and cached pretrained image features. The [model comparison notebook](ENGG2112_Model_Comparison.ipynb) compares their saved validation results with the fine-tuned ResNet-18 baseline, verifies that all runs used the same split-manifest hash, and does not train models itself. Test evaluation remains locked pending review and split freeze.
+
 The original `.py` modules remain available for command-line use and training integration. PDF/DOCX reports are supplementary exports. Clear saved outputs before sharing a rerun Notebook.
 
 Read [A tasks and B handoff](docs/A_TASKS_AND_B_HANDOFF.md) for completed work, remaining responsibilities and acceptance checks. The [English data report](reports/ENGG2112_Data_Analysis_Report.pdf) describes the measured provisional results.
